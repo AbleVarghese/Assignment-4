@@ -15,35 +15,46 @@ namespace Assignment_4
         public int[] dice1Rolls = new int[36000];
         public int[] dice2Rolls = new int[36000];
         public int[] sum = new int[36000];
-        public int[] repeatedSums = new int[12];
+        public int[] repeatedSums = new int[11];
         public int[] possibleSums = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
         
         
 
         //Properties
 
-      public void RollingDice1()
+        public void RollingDice1()
         {
 
 
             Random dice1 = new Random();
 
-           for (int index = 0; index < 12; index++)
-           {
-               this.dice1Rolls[index] = dice1.Next(1, 7);
-               
-           }
-       }
+            for (int index = 0; index < 36000; index++)
+            {
+                this.dice1Rolls[index] = dice1.Next(1, 7);
+                if (this.dice1Rolls[index] >= 4)
+                {
+                    this.dice1Rolls[index] = dice1.Next(4, 7);
+                }
+
+            }
+        }
 
       public void RollingDice2()
       {
         
           Random dice2 = new Random();
 
-          for (int index = 0; index < 12; index++)
+          for (int index = 0; index < 36000; index++)
           {
               this.dice2Rolls[index] = dice2.Next(1, 7);
+              if (this.dice2Rolls[index] < 4)
+              {
+                  this.dice2Rolls[index] = dice2.Next(1, 4);
+              }
+            //  Console.Write("{0},  ", dice2Rolls[index]);
+
           }
+          Console.Write("....\n\n\n");
       }
 
 
@@ -54,12 +65,15 @@ namespace Assignment_4
       public void Sums()
       {
 
-           for (int index = 0; index < 12; index++)
+           for (int index = 0; index <36000; index++)
            {
              
                this.sum[index] = this.dice1Rolls[index] + this.dice2Rolls[index];
 
+              // Console.Write("{0},  ", sum[index]);
+
            }
+          // Console.Write("....\n\n\n");
        }
 
 
@@ -70,12 +84,11 @@ namespace Assignment_4
        {
 
 
-          // Array.ForEach(repeatedSums,Arra);//Clear(repeatedSums, 0, repeatedSums.Length);
+          //Clear(repeatedSums, 0, repeatedSums.Length);
           for (int index = 0; index < 11; index++)
            {
-
-
-               for (int i = 0; i < 12; i++)
+            
+               for (int i = 0; i < 36000; i++)
                {
                    if (this.sum[i] == this.possibleSums[index])
                    {
@@ -92,14 +105,23 @@ namespace Assignment_4
 
         public void Display()
         {
+                Console.WriteLine("1st Dice Roll\t2nd Dice Roll\tSums\n");
+            for (int index = 0; index < 5; index++)
+            {
+                
+                Console.WriteLine("    {0}         +        {1}       \t= {2}", this.dice1Rolls[index], this.dice2Rolls[index], sum[index]);
+                Console.WriteLine("------------------------------------------");
+
+            }
+            Console.WriteLine("etc.. etc...  Above table continued upto 36000 times");
+            Console.WriteLine("\n\n   Possible Sums\t  No. of Occurance\n");
             for (int i = 0; i < 11; i++)
             {
+                    Console.WriteLine("\t{0}\t\t\t{1}", possibleSums[i], repeatedSums[i]);
 
-
-             // Console.WriteLine("{0}", repeatedSums[i]);
-               Console.WriteLine("{0}  + {1} = {2}", this.dice1Rolls[i], this.dice2Rolls[i], sum[i]);
-             //  Console.WriteLine("{0}",);
             }
+            Console.Write("\n\n");
+        
         }
                    
               
