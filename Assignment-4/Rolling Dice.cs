@@ -97,7 +97,7 @@ namespace Assignment_4
                 Console.WriteLine("------------------------------------------");
 
             }
-            Console.WriteLine("etc.. etc...  Above table is continued upto 36000 Rolls of both dices");
+            Console.WriteLine("etc.. Above table is continued likewise upto 36000 simultanious rolls of dices");
             Console.WriteLine("\n\n   Possible Sums\t  No. of Occurance\n");
             for (int i = 0; i < 11; i++)
             {
